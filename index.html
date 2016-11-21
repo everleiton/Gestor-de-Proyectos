@@ -8,6 +8,14 @@
   <link rel="stylesheet" href="./css/style.css" media="screen" title="no title">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
+<script type="text/javascript">
+function nuevoID() {
+  var ID= Math.random().toString(36).substr(2, 4);
+  document.getElementById('idproject').innerHTML = ID;
+};
+
+
+</script>
 <body>
   <header>
     <div class="cabecera  blue  darken+1">
@@ -19,104 +27,131 @@
           <li class="tab"><a class="active" href="#pestana1">Inicio</a></li>
           <li class="tab"><a  href="#pestana2">Reportes</a></li>
           <li class="tab "><a href="#pestana3">Configuraciones</a></li>
-          <li class="tab"><a href="#pestana4"> tetxto?</a></li>
+          <li class="tab "><a data-activates="slide-out" class="jaja" href="#pestana4"> tetxto?</a></li>
         </ul>
       </div>
     </nav>
   </header>
   
   <div id="pestana1" class="contenedorpestanas  blue lighten-4 col s12 ">
-                
-                <div id="modal1" class="modal modal-fixed-footer">
-                  <div class="modal-content">
-                    <h4>Agregar un nuevo proyecto</h4>
-                    <p>A bunch of text</p>
-                  </div>
-                  <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nuevo Proyecto!!', 4000)">Agregar</a>
-                  </div>
-                </div>
-              
-                <div id="modal2" class="modal modal-fixed-footer">
-                  <div class="modal-content">
-                    <h4>Agregar una nueva persona</h4>
-                    <p>A bunch of text</p>
-                  </div>
-                  <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nueva Persona  !!', 4000)">Agregar</a>
-                  </div>
-                </div>
-    <div class="tareas">
-      <div class="card" >
-        <div class="card-content">
-          <div class="texto">
-            <p class="flow-text">Proyecto Web I</p>
-            
-          </div>
-          <div class="iconos">
-            
-            <a class="btn-floating tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"><i class="material-icons blue lighten+1">edit</i></a>
-            <a class="btn-floating tooltipped" data-position="right" data-delay="50" data-tooltip="Eliminar"><i class="material-icons blue lighten+1">delete</i></a>
-          </div>
+    
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Agregar un nuevo proyecto</h4>
+        <form id="registro" class="col s12" method="post" action="index.php/Logearse/logn">
+          <div class="row">
+            <label for="idp">Id del proyecto</label><h5 name="idp"class"red" id="idproject"><j/h5>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">account_circle</i>
+                <input value="" id="name" type="text" class="active validate" required>
+                <label for="name">Id del proyecto</label>
+              </div>
+            </div>  
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">account_circle</i>
+                <input value="" id="date" type="date" class="datepicker" required>
+                <label for="date">Username</label>
+              </div>
+            </div>   
+          </form>   
         </div>
-        <div class="card-action">
-          
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nuevo Proyecto!!', 4000)">Agregar</a>
         </div>
       </div>
       
-    </div>
-    
-    
-    
-    
-    
-    <div class="fixed-action-btn">
-      <a class="btn-floating btn-large blue lighten+1">
-        <i class="material-icons right">more_vert</i>
-      </a>
-      <ul>
-        <li><a href="#modal1" class="btn-floating  tooltipped" data-position="left" data-delay="50" data-tooltip="Añadir Proyecto" ><i class="material-icons blue lighten+1">note_add</i></a></li>
-        <li><a href="#modal2" class="btn-floating  tooltipped" data-position="left" data-delay="50" data-tooltip="Añadir Persona" ><i class="material-icons blue lighten+1">perm_identity</i></a></li>
-      </ul>
-    </div>
-    
-    
-  </div>
-  <div id="pestana2" class="contenedorpestanas  blue lighten-4 col s12 ">Test 2</div>
-  <div id="pestana3" class="contenedorpestanas  blue  lighten-4 col s12 ">Test 3</div>
-  <div id="pestana4" class="contenedorpestanas  blue  lighten-4 col s12 ">Test 4</div>
-  
-  
-  
-  <footer class="page-footer  blue  darken-2">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Proyecto II</h5>
-          <p class="grey-text text-lighten-4">Diseño de Aplicaciones Web.</p>
+      <div id="modal2" class="modal r">
+        <div class="modal-content">
+          <h4>Agregar una nueva persona</h4>
+          <form id="registro" class="col s12" method="post" action="">
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input value="" id="name" type="text" class="active validate" required>
+                <label for="name">Nombre</label>
+              </div></div>     
+            </form>       
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
+            <a href="#!" id="agregarproyecto" class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nueva Persona  !!', 4000)">Agregar</a>
+          </div>
         </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Sigueme en las Redes Sociales</h5>
+        
+      
+        
+        
+        <div class="tareas">
+          
+          <div class="card" ><div class="card-content">
+                  <div class="texto"><p class="flow-text">Proyecto Web I</p></div>
+                  <div class="iconos">
+                    <a id="editCard"class="btn-floating tooltipped" data-position="top" data-delay="50" data-tooltip="Editar"><i class="material-icons blue lighten+1">edit</i></a>
+                    <a class="btn-floating tooltipped deleteCard" data-position="right" data-delay="50" data-tooltip="Eliminar"><i class="material-icons blue lighten+1">delete</i></a>
+                  </div></div><div class="card-action"> Nuevo | En Proceso |Finali</div></div>
+          
+        </div>
+        
+        
+        
+        
+        
+        <div class="fixed-action-btn">
+          <a class="btn-floating btn-large blue lighten+1">
+            <i class="material-icons right">more_vert</i>
+          </a>
           <ul>
-            <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Instagram</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+            <li><a href="#modal1" onclick="nuevoID()" class="btn-floating  tooltipped" data-position="left" data-delay="50" data-tooltip="Añadir Proyecto" ><i class="material-icons blue lighten+1">note_add</i></a></li>
+            <li><a href="#modal2"  onclick="nuevoID()"class="btn-floating  tooltipped" data-position="left" data-delay="50" data-tooltip="Añadir Persona" ><i class="material-icons blue lighten+1">perm_identity</i></a></li>
+            <li><a href="" id="undo"class="btn-floating  tooltipped" data-position="left" data-delay="50" data-tooltip="Deshacer acción" ><i class="material-icons blue lighten+1">undo</i></a></li>
           </ul>
         </div>
+        
+        <div class="personas">
+          <div class="">
+          </div>
+          <div class="etiqueta">
+            <p>Personas</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-        © 2016 Ever Leitón
-        <a class="grey-text text-lighten-4 right" href="#!">UTN - Sede Regional de San Carlos</a>
-      </div>
-    </div>
-  </footer>
-  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="js/materialize.js"></script>
-  <script type="text/javascript" src="js/js.js"></script>
-</body>
-</html>
+      <div id="pestana2" class="contenedorpestanas  blue lighten-4 col s12 ">Test 2</div>
+      <div id="pestana3" class="contenedorpestanas  blue  lighten-4 col s12 ">Test 3</div>
+      <div id="pestana4" class="contenedorpestanas  blue  lighten-4 col s12 ">Test 4</div>
+      
+      
+      
+      <footer class="page-footer  blue  darken-2">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Proyecto II</h5>
+              <p class="grey-text text-lighten-4">Diseño de Aplicaciones Web.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Sigueme en las Redes Sociales</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Instagram</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+            © 2016 Ever Leitón
+            <a class="grey-text text-lighten-4 right" href="#!">UTN - Sede Regional de San Carlos</a>
+          </div>
+        </div>
+      </footer>
+      <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.js"></script>
+      <script type="text/javascript" src="js/js.js"></script>
+    </body>
+    </html>

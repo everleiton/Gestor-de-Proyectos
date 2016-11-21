@@ -52,46 +52,21 @@ min-width: 380px;
   justify-content: space-around;
   align-items: center;
 }
-/*
-button {
- transform-style: preserve-3d;
-}
-button:after {
- top: -100%;
- left: 0px;
- width: 100%;
- position: absolute;
- background: #3a9999;
- border-radius: 5px;
- content: 'Flipped';
- transform-origin: left bottom;
- transform: rotateX(90deg);
-}
-button:hover {
- transform-origin: center bottom;
- transform: rotateX(-90deg) translateY(100%);
-}
-
-*/
-
-
 .loading{
-	/*--Propiedades-triviales--*/
 	font-family:Helvetica;
 	font-size:3em;
 	font-weight:bold;
 	text-transform: uppercase;
 	text-align:center;
 	line-height: 1em;
- 
-	/*--Propiedades-de-la-texto--*/
+
 	color:transparent;
 	text-shadow:0 0 0 rgba(0,0,0,.1);
  
 	/*--Propiedades-del-fondo--*/
 	background-image:url(../images/waves.png);
 	background-repeat:repeat-x; 
-	background-size: 200px 100px; 
+	background-size: 150px 125px; 
  
 	/*--Background-clip-text--*/
 	background-clip:text;
@@ -126,7 +101,8 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-flow: column;
+  flex-flow: wrap;
+
 }
 
 .card{
@@ -150,4 +126,34 @@ button:hover {
 }
 .iconos{
   width: 30%;
+}
+.personas{
+  margin-left: -200px;
+  width: 200px;
+  height: 640px;
+  background-color: transparent;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  position: fixed;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  
+}
+.personas:hover{
+  background-color:#2196F3;
+  margin-left: 0;
+}
+.etiqueta{
+
+  margin-left: +200px;
+  width: 20px;
+  background-color:#2196F3; 
+   font-size: 16px;
+   word-wrap: break-word;
+   border-radius: 0px 6px 6px 0px;
+   color: #ffffff;
+   padding: 5px;
 }
