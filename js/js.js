@@ -23,9 +23,8 @@ function load_data() {
 	listaProyectos = Persister.loadObj('listaProyectos', "[]");
 
 	$('#listaProyectos').html('');
-	for (contProyecto = 0; contProyecto < listaProyectos.length; i++) {
+	for (var i = 0; i < listaProyectos.length; i++) {
 		$('.tareas').append(listaProyectos[i].nombre);
-    
 	}
 }
 
@@ -59,7 +58,7 @@ $(document).ready(function() {
         '<div class="card-content">	'+
         '<div class="texto"><p id="proyecto_234"class="'+ID+'">'+nomNuevoPro+'</p></div>	'+
         '<div class="iconos">	'+
-        '<a id="contProyecto" href="#modal_editar"class="btn-floating tooltipped proyecto_234" data-position="top" data-delay="50" data-tooltip="Editar"><i class="material-icons blue lighten+1">edit</i></a>	'+
+        '<a id="proyecto_234" href="#modal_editar"class="btn-floating tooltipped proyecto_234" data-position="top" data-delay="50" data-tooltip="Editar"><i class="material-icons blue lighten+1">edit</i></a>	'+
         '<a class="btn-floating tooltipped deleteCard" data-position="right" data-delay="50" data-tooltip="Eliminar"><i class="material-icons blue lighten+1">delete</i></a>	'+
         '	 </div>	'+
         '</div>	'+
