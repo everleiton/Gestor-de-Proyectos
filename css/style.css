@@ -104,6 +104,9 @@ min-width: 380px;
   flex-flow: wrap;
 
 }
+#modal1{
+  overflow: visible;
+}
 
 .card{
   width: 350px;
