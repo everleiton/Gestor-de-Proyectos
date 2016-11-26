@@ -1,5 +1,6 @@
 var proyectonuevo="";
 var listaProyectos = [];
+var contProyecto = 0;
 var Persister = {
 	save: function (key, value) {
 		localStorage.setItem(key, value);
@@ -22,8 +23,9 @@ function load_data() {
 	listaProyectos = Persister.loadObj('listaProyectos', "[]");
 
 	$('#listaProyectos').html('');
-	for (var i = 0; i < listaProyectos.length; i++) {
+	for (contProyecto = 0; contProyecto < listaProyectos.length; i++) {
 		$('.tareas').append(listaProyectos[i].nombre);
+    
 	}
 }
 
@@ -53,11 +55,11 @@ $(document).ready(function() {
       var nomNuevoPro= document.getElementById("nameProyecto").value;
         var fechaInicio= document.getElementById("dateInicio").value;
         var ID= Math.random().toString(36).substr(2, 4);
-        proyectonuevo='	  <div class="card" >	'+
-        '<div class="card-content objMovible">	'+
+        proyectonuevo='	  <div class="card objMovible" >	'+
+        '<div class="card-content">	'+
         '<div class="texto"><p id="proyecto_234"class="'+ID+'">'+nomNuevoPro+'</p></div>	'+
         '<div class="iconos">	'+
-        '<a id="proyecto_234" href="#modal_editar"class="btn-floating tooltipped proyecto_234" data-position="top" data-delay="50" data-tooltip="Editar"><i class="material-icons blue lighten+1">edit</i></a>	'+
+        '<a id="contProyecto" href="#modal_editar"class="btn-floating tooltipped proyecto_234" data-position="top" data-delay="50" data-tooltip="Editar"><i class="material-icons blue lighten+1">edit</i></a>	'+
         '<a class="btn-floating tooltipped deleteCard" data-position="right" data-delay="50" data-tooltip="Eliminar"><i class="material-icons blue lighten+1">delete</i></a>	'+
         '	 </div>	'+
         '</div>	'+

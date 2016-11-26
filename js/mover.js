@@ -1,3 +1,4 @@
+var moz = document.getElementById && !document.all;
 var estoyArrastrando = false;
 //Variable para almacenar un puntero al objeto que estamos moviendo
 var dobj;
