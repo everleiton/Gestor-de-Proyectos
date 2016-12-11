@@ -17,84 +17,19 @@
     <nav class="nav-extended  blue ">
       <div class="nav-wrapper">
         <ul class="tabs tabs-transparent">
-          <li class="tab"><a class="active" href="#pestana1">Inicio</a></li>
-          <li class="tab"><a  href="#pestana2">Reportes</a></li>
-          <li class="tab "><a href="#pestana3">Configuraciones</a></li>
-          <li class="tab "><a data-activates="slide-out" class="jaja" href="#pestana4"> tetxto?</a></li>
+          <li class="tab"><a class="active" href="#pestana1">Dashboard</a></li>
+          <li class="tab"><a  href="#pestana2">Reportes de Proyectos</a></li>
+          <li class="tab "><a href="#pestana3">Reporte de Personas</a></li>
+          <li class="tab "><a data-activates="slide-out" class="jaja" href="#pestana4">Contacto</a></li>
         </ul>
       </div>
     </nav>
   </header>
   
   <div id="pestana1" class="contenedorpestanas  blue lighten-4 col s12 ">
-    
-    <div id="modal1" class="modal modal-fixed-footer">
-      <div class="modal-content">
-        <h4>Agregar un nuevo proyecto</h4>
-        <form id="registro" class="col s12" method="post" action="">
-          <div class="row">
-            <div class="input-field col s6">
-              <i class="material-icons prefix">folder</i>
-              <input value="" id="nameProyecto" type="text" class="active validate" required>
-              <label for="nameProyecto">Id del proyecto</label>
-            </div>
-          </div>  
-          <div class="row">
-            <div class="input-field col s6">
-              <i class="material-icons prefix">trending_flat</i>
-              <input value="" id="dateInicio" type="date" class="datepicker" required>
-              <label for="dateInicio">Fecha de inicio: </label>
-            </div>
-          </div>   
-        </form>   
-      </div>
-      <div class="modal-footer ">
-        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
-        <a href="#!" id="agregarproyecto" class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nuevo Proyecto!!', 4000)">Agregar</a>
-      </div>
-    </div>
-    
-    <div id="modal2" class="modal ">
-      <div class="modal-content">
-        <h4>Agregar una nueva persona</h4>
-        <form id="registro" class="col s12" method="post" action="">
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">account_circle</i>
-              <input value="" id="name" type="text" class="active validate" required>
-              <label for="name">Nombre</label>
-            </div></div>     
-          </form>       
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
-          <a href="#!"  class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nueva Persona  !!', 4000)">Agregar</a>
-        </div>
-      </div>
-      
-      <div id="modal_editar" class="modal ">
-        <div class="modal-content">
-          <h4>Editar nombre</h4>
-          <form id="registro" class="col s12" method="post" action="">
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="nombreEdicion"value="" id="name" type="text" class="active validate" required>
-                <label for="name">Nombre: </label>
-              </div></div>     
-            </form>       
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
-            <a href="#!" id="salvarEdicion" class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Cambios guardados  !!', 4000)">Editar</a>
-          </div>
-        </div>
-        
-        
-        
-        <div class="tareas">
+      <div class="tareas">
           
-        <!--  <div class="card" >
+         <div class="card" >
             <div class="card-content">
               <div class="texto"><p id="proyecto_234"class="proyecto_234">Proyecto Web I</p></div>
               <div class="iconos">
@@ -106,8 +41,35 @@
                 <h6>ID: <strong>jhnhh</strong><span class="new badge blue lighten+1" data-badge-caption="Personas a cargo">4</span></h6>
                 <h6>Fecha de Inicio: </h6>
             </div>
-            <div class="card-action"> 
-              
+            <div class="card-action tareas2"> 
+              <div id="nueva" class="columnaTarea">
+                <div draggable="false" class="tituloEstado">
+                  <h6>Nueva tarea 
+                    <a href="#modal_tarea"class="btn-floating btn-tiny tooltipped" data-position="top" data-delay="80" data-tooltip="Agregar Tarea"><i class="material-icons tiny blue lighten+1">edit</i></a>
+                </div>
+                <div draggable="true" class="areaTareas">
+                  <div class="cuadritoTarea">hola</div>
+                  <div class="cuadritoTarea">hola</div>
+                  
+                </div>
+              </div>
+              <div id="nueva" class="columnaTarea">
+                <div draggable="false" class="titulo">
+                  <h6>En proceso 
+                  </h6>
+                </div>
+                <div draggable="true" class="areaTareas">
+                  
+                </div>
+              </div>
+              <div id="nueva" class="columnaTarea">
+                <div draggable="false" class="titulo">
+                  <h6>Finalizada</h6>
+                </div>
+                <div draggable="true" class="areaTareas">
+                  
+                </div>
+              </div>
                 
             
             
@@ -116,7 +78,7 @@
             </div>
           </div> 
           
-        </div> -->
+        </div><!-- aqui termina la card -->
         
         
       
@@ -130,7 +92,6 @@
           </a>
           <ul>
             <li><a href="#modal1"  class="btn-floating  tooltipped" data-position="left" data-delay="50" data-tooltip="Añadir Proyecto" ><i class="material-icons blue lighten+1">note_add</i></a></li>
-            <li><a href="#modal2"  onclick="nuevoID()"class="btn-floating  tooltipped" data-position="left" data-delay="50" data-tooltip="Añadir Persona" ><i class="material-icons blue lighten+1">perm_identity</i></a></li>
             <li><a href="" id="undo"class="btn-floating  tooltipped" data-position="left" data-delay="50" data-tooltip="Deshacer acción" ><i class="material-icons blue lighten+1">undo</i></a></li>
           </ul>
         </div>
@@ -138,11 +99,75 @@
       </div>
       
       
-      <div id="pestana2" class="contenedorpestanas  blue lighten-4 col s12 ">Test 2</div>
+      <div id="pestana2" class="contenedorpestanas  blue lighten-4 col s12 ">
+      <div id="containerproyecto">
+        
+      </div>
+      </div>
       <div id="pestana3" class="contenedorpestanas  blue  lighten-4 col s12 ">Test 3</div>
       <div id="pestana4" class="contenedorpestanas  blue  lighten-4 col s12 ">Test 4</div>
       
+      <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <h4>Agregar un nuevo proyecto</h4>
+          <form id="registro" class="col s12" method="post" action="">
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">folder</i>
+                <input value="" id="nameProyecto" type="text" class="active validate" required>
+                <label for="nameProyecto">Nombre del proyecto</label>
+              </div>
+            </div>  
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">trending_flat</i>
+                <input value="" id="dateInicio" type="date" class="datepicker"  heigth="100px"required>
+                <label for="dateInicio">Fecha de inicio: </label>
+              </div>
+            </div>   
+          </form>   
+        </div>
+        <div class="modal-footer ">
+          <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
+          <a href="#!" id="agregarproyecto" class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nuevo Proyecto!!', 4000)">Agregar</a>
+        </div>
+      </div>
       
+      <div id="modal2" class="modal ">
+        <div class="modal-content">
+          <h4>Agregar una nueva persona</h4>
+          <form id="registro" class="col s12" method="post" action="">
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input value="" id="name" type="text" class="active validate" required>
+                <label for="name">Nombre</label>
+              </div></div>     
+            </form>       
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
+            <a href="#!"  class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nueva Persona  !!', 4000)">Agregar</a>
+          </div>
+        </div>
+        
+        <div id="modal_editar" class="modal ">
+          <div class="modal-content">
+            <h4>Editar nombre</h4>
+            <form id="registro" class="col s12" method="post" action="">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input id="nombreEdicion"value="" id="name" type="text" class="active validate" required>
+                  <label for="name">Nombre: </label>
+                </div></div>     
+              </form>       
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
+              <a href="#!" id="salvarEdicion" class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Cambios guardados  !!', 4000)">Editar</a>
+            </div>
+          </div>
       
       <footer class="page-footer  blue  darken-2">
         <div class="container">
@@ -157,7 +182,6 @@
                 <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
                 <li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
                 <li><a class="grey-text text-lighten-3" href="#!">Instagram</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
               </ul>
             </div>
           </div>
@@ -169,9 +193,26 @@
           </div>
         </div>
       </footer>
+      
+      
+      <script>
+      function permitirSoltar(ev) {
+        ev.preventDefault();
+      }
+      function soltar(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("Text");
+        ev.target.appendChild(document.getElementById(data));
+      }
+      function arrastrar(ev) {
+        ev.dataTransfer.setData("Text", ev.target.id);
+      }
+      </script> 
       <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.js"></script>
       <script type="text/javascript" src="js/js.js"></script>
+      <script type="text/javascript" src="js/highcharts.js"></script>
+      <script type="text/javascript" src="js/graficos.js"></script>
       <script type="text/javascript" src="js/mover.js"></script>
     </body>
     </html>
