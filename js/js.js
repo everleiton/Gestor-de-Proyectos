@@ -1,7 +1,7 @@
 var proyectonuevo="";
 var listaProyectos = [];
 var personas=[];
-
+var contPersonas =0;
 
 var contProyecto = 0;
 var ID = 0;
@@ -33,19 +33,31 @@ var Persister = {
 
 function load_data() {
   listaProyectos = Persister.loadObj('listaProyectos', "[]");
+  personas = Persister.loadObj('personas', "[]");
   $('#listaProyectos').html('');
   for (var i = 0; i < listaProyectos.length; i++) {
     if (listaProyectos[i] != null) {
       dibujarCargados(listaProyectos[i].id, listaProyectos[i].nombre, listaProyectos[i].fecha, listaProyectos[i].encargados, listaProyectos[i].idBoton);
 }
 }
+
 contProyecto=  listaProyectos.length;
 
 }
 
+function loadPersonas() {
+  for (var i = 0; i < personas.length; i++) {
+    
+      $('#seleccionPersona').append('<option value="" data-icon="images/person.png" class="left circle">'+personas[i].nombre+'</option>');
+      $('select').material_select();
+  
+  }
+  contPersonas=personas.length;
+}
+
 $(document).ready(function() {
   load_data();
-  
+  loadPersonas();
   VerIdEditable();
   eliminarElemento();
   editarElemento();
@@ -65,7 +77,12 @@ $(document).ready(function() {
     $(this).unbind();
   });
           $("#addCombo").on('click', function(){
-              $('#seleccionPersona').append('<option value="" data-icon="images/person.png" class="left circle">example 4</option>');
+            var nomP = document.getElementById("nuevaPersona").value;
+            
+              personas.push({id: contPersonas, nombre: nomP, cantidadTareas: 2});
+              Persister.saveObj('personas', personas);
+              $('#seleccionPersona').append('<option value="" data-icon="images/person.png" class="left circle">'+nomP+'</option>');
+              document.getElementById("nuevaPersona").value = "";
               $('select').material_select();
           });
   
