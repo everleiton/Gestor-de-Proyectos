@@ -5,10 +5,10 @@ var contPersonas =0;
 
 var contProyecto = 0;
 var ID = 0;
-var edicionProyecto="";
-
+var edicionProyecto=0;
+var idSeleccionadoEdicion="";
 var Persister = {
-
+  
   save: function (key, value) {
     localStorage.setItem(key, value);
   },
@@ -38,21 +38,22 @@ function load_data() {
   for (var i = 0; i < listaProyectos.length; i++) {
     if (listaProyectos[i] != null) {
       dibujarCargados(listaProyectos[i].id, listaProyectos[i].nombre, listaProyectos[i].fecha, listaProyectos[i].encargados, listaProyectos[i].idBoton);
-}
-}
-
-contProyecto=  listaProyectos.length;
-
+    }
+  }
+  
+  contProyecto=  listaProyectos.length;
+  
 }
 
 function loadPersonas() {
   for (var i = 0; i < personas.length; i++) {
     
-      $('#seleccionPersona').append('<option value="" data-icon="images/person.png" class="left circle">'+personas[i].nombre+'</option>');
-      $('select').material_select();
-  
+    $('#seleccionPersona').append('<option value="" data-icon="images/person.png" class="left circle">'+personas[i].nombre+'</option>');
+    $('select').material_select();
+    
   }
   contPersonas=personas.length;
+  
 }
 
 $(document).ready(function() {
@@ -65,8 +66,8 @@ $(document).ready(function() {
   $('.tooltipped').tooltip({delay: 50});
   
   $('.modal').modal();
-      $('select').material_select();
-
+  $('select').material_select();
+  
   
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -76,15 +77,19 @@ $(document).ready(function() {
   $("#undo").on('click', function(){
     $(this).unbind();
   });
-          $("#addCombo").on('click', function(){
-            var nomP = document.getElementById("nuevaPersona").value;
-            
-              personas.push({id: contPersonas, nombre: nomP, cantidadTareas: 2});
-              Persister.saveObj('personas', personas);
-              $('#seleccionPersona').append('<option value="" data-icon="images/person.png" class="left circle">'+nomP+'</option>');
-              document.getElementById("nuevaPersona").value = "";
-              $('select').material_select();
-          });
+  $("#addCombo").on('click', function(){
+    var nomP = document.getElementById("nuevaPersona").value;
+    if (nomP.value != null) {
+      contPersonas+=1;
+      personas.push({id: contPersonas, nombre: nomP, cantidadTareas: 1});
+      Persister.saveObj('personas', personas);
+      $('#seleccionPersona').append('<option value="" data-icon="images/person.png" class="left circle">'+nomP+'</option>');
+      document.getElementById("nuevaPersona").value = "";
+      $('select').material_select();
+    }else{
+      Materialize.toast('Debe ingresar un nombre para poder agregar.', 10000);
+    }
+  });
   
   $( "#agregarproyecto" ).on( "click", function() {
     event.preventDefault();
@@ -96,22 +101,25 @@ $(document).ready(function() {
     cuando los agarro recorro 2 for uno con la lsta de priyecto y otro que me reforre el listado de atributps de la tarea   podria ser tarea[ ]
     
     */
-
+    
     var nomNuevoPro= document.getElementById("nameProyecto").value;
     var fechaInicio= document.getElementById("dateInicio").value;
     ID = contProyecto +1;
     idBoton= contProyecto; //Revisar este
     
-  
+    
     if ((nomNuevoPro != "") && fechaInicio !="") {
       
       dibujarProyectos(nomNuevoPro, fechaInicio, ID, 0, idBoton);
-    
+      
       $('#nombreEdicion').val("");
       $('#nameProyecto').val("");
       $('#dateInicio').val("");
+      Materialize.toast('Proyecto agregado exitosamente!.', 10000);
     } else {
-      $("#nameProyecto").attr("placeholder", "Campo Vacío");
+      
+      Materialize.toast('Ops!! Ha ocurrido un error <br><br> Debe asignarle un nombre y/o fecha <br> al proyecto para poderlo agregar.', 10000);
+      $("#nameProyecto").attr("placeholder", "");
     }
     
     
@@ -156,16 +164,16 @@ function eliminarElemento() {
   $('#listaProyectos').html('');
   $( ".deleteCard" ).on( "click", function(e) {
     var idDelete =  e.target.id;
-
-  
-  
-listaProyectos.splice(idDelete,1);
+    
+    
+    
+    listaProyectos.splice(idDelete);
     var nuevoArreglo =(JSON.stringify(listaProyectos));
     localStorage.setItem('listaProyectos', nuevoArreglo);
     
-		load_data();
     
-
+    
+    
     $(this).parent().parent().parent().slideUp();
   });  
 }
@@ -180,11 +188,15 @@ listaProyectos.splice(idDelete,1);
 function editarElemento() {
   
   $( "#salvarEdicion" ).on( "click", function() {
+    alert(listaProyectos[edicionProyecto].nombre);
+    debugger;
     
     var nombreNuevo= document.getElementById("nombreEdicion").value;
     
-    document.getElementById(edicionProyecto).innerHTML = nombreNuevo;
-    
+    document.getElementById(idSeleccionadoEdicion).innerHTML = nombreNuevo;
+    listaProyectos[edicionProyecto].nombre = nombreNuevo;
+    var nuevoArreglo =(JSON.stringify(listaProyectos));
+    localStorage.setItem('listaProyectos', nuevoArreglo);
     
   });  
 };
@@ -192,21 +204,24 @@ function editarElemento() {
 function VerIdEditable() {
   
   $( ".btnEditar" ).on( "click", function(e) {
-  
-    edicionProyecto=  e.target.id;
-    alert(edicionProyecto);
+    idSeleccionadoEdicion=  e.target.id;
+    idTargeta = idSeleccionadoEdicion.substr(-10,1);
+    edicionProyecto =(idTargeta -1);
+    document.getElementById("nombreEdicion").value =listaProyectos[edicionProyecto].nombre;
+    $("#iconoEdicion").addClass("active");
+    $( "#nombreEdicion" ).focus();
   });  
 }
 
 
 /*
 function findAndRemove(array, property, value) {
-  array.forEach(function(result, index) {
-    if(result[property] === value) {
-      //Remove from array
-      array.splice(index, 1);
-    }    
-  });
+array.forEach(function(result, index) {
+if(result[property] === value) {
+//Remove from array
+array.splice(index, 1);
+}    
+});
 }
 
 //Checks countries.result for an object with a property of 'id' whose value is 'AF'
@@ -245,7 +260,7 @@ function dibujarCargados( id,nombre, fecha,personasencargadas, idBoton) {
   '</div>	'+
   '<div class="card-action"> Nuevo | En Proceso |Finali</div>	'+
   '</div>	';
-
+  
   $('.tareas').append(proyecto);
   
   $('.tooltipped').tooltip({delay: 50});

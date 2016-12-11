@@ -53,7 +53,7 @@
           </div>
         </div>
         <div class="card-action">
-          <h6>ID: <strong>jhnhh</strong><span class="new badge blue lighten+1" data-badge-caption="Personas a cargo">4</span></h6>
+          <h6>ID: <strong>jhnhh</strong><span class="new badge blue lighten+1" data-badge-caption="Personas a cargo">1 </span></h6>
           <h6>Fecha de Inicio: </h6>
         </div>
         <div class="card-action tareas2"> 
@@ -63,9 +63,9 @@
                 <a href="#modal_tarea"class="btn-floating btn-tiny tooltipped" data-position="top" data-delay="80" data-tooltip="Agregar Tarea"><i class="material-icons tiny blue lighten+1">add</i></a>
               </div>
               <div ondrop="drop(event)" ondragover="allowDrop(event)"class="areaTareas">
-                <div draggable="true" id="tarea1"ondragstart="drag(event)"  class="cuadritoTarea">Ever</div>
-                <div draggable="true" id="tarea1"ondragstart="drag(event)"  class="cuadritoTarea">Ever</div>
-                <div draggable="true" id="tarea2" ondragstart="drag(event)" class="cuadritoTarea">hola</div>
+                <div draggable="true" id="tarea1"ondragstart="drag(event)" data-position="top" data-delay="80" data-tooltip="jkdnjknkjncjkdsnkjcnskj jndsckjnkjcnsdjknc sjdncjknsdc jcnjksn sjdnckjsj" class="cuadritoTarea">Diseñar interfaz</div>
+                <div draggable="true" id="tarea1"ondragstart="drag(event)"  class="cuadritoTarea">Diseñar lógica</div>
+                <div draggable="true" id="tarea2" ondragstart="drag(event)" class="cuadritoTarea">Presentarlo</div>
                 
               </div>
             </div>
@@ -146,7 +146,7 @@
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
-      <a href="#!" id="agregarproyecto" class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nuevo Proyecto!!', 4000)">Agregar</a>
+      <a href="#!" id="agregarproyecto" class="modal-action modal-close waves-effect waves-green btn-flat ">Agregar</a>
     </div>
   </div>
   
@@ -158,16 +158,14 @@
           <div class="input-field col s12">
             <i class="material-icons prefix">work</i>
             <input value="" id="name" type="text" class="active validate" required>
-            <label for="name">Nombre</label>
+            <label for="name">Tarea</label>
           </div></div> 
           <div class="row">
             <div class="input-field col s5">
               <select  id="seleccionPersona"class="icons">
-                <option value="" disabled selected></option>
-            
+          
               </select>
-              <label>Selecciona una persona</label>
-              
+              <label>Selecciona una persona</label>    
         </div> <a id="addCombo"class="btn-floating btn-tiny tooltipped" data-position="top" data-delay="80" data-tooltip="Añadir persona"><i class="material-icons tiny blue lighten+1">add</i></a>
         <div class="input-field col s4">
           <input value="" id="nuevaPersona" type="text" class="active validate" required>
@@ -178,19 +176,19 @@
       </div>
       <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
-        <a href="#!"  class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nueva Persona  !!', 4000)">Agregar</a>
+        <a href="#!"  class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nueva Tarea  !!', 4000)">Agregar tarea</a>
       </div>
     </div>
     
-    <div id="modal_editar" class="modal ">
+    <div id="modal_editar" class="modal">
       <div class="modal-content">
         <h4>Editar nombre</h4>
         <form id="registro" class="col s12" method="post" action="">
           <div class="row">
             <div class="input-field col s12">
-              <i class="material-icons prefix">account_circle</i>
+              <i id="iconoEdicion"class="material-icons prefix">account_circle</i>
               <input id="nombreEdicion"value="" id="name" type="text" class="active validate" required>
-              <label for="name">Nombre: </label>
+        
             </div></div>     
           </form>       
         </div>
