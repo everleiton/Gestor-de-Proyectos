@@ -1,6 +1,6 @@
 var proyectonuevo="";
 var listaProyectos = [];
-
+var personas=[];
 
 
 var contProyecto = 0;
@@ -25,6 +25,12 @@ var Persister = {
   }
 };
 
+/////////////////////////////////
+//////////cuando cargue las personas y agrege al select debo agregar
+///////////////////  $('select').material_select();
+///////////////////
+
+
 function load_data() {
   listaProyectos = Persister.loadObj('listaProyectos', "[]");
   $('#listaProyectos').html('');
@@ -47,7 +53,8 @@ $(document).ready(function() {
   $('.tooltipped').tooltip({delay: 50});
   
   $('.modal').modal();
-  
+      $('select').material_select();
+
   
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -57,6 +64,10 @@ $(document).ready(function() {
   $("#undo").on('click', function(){
     $(this).unbind();
   });
+          $("#addCombo").on('click', function(){
+              $('#seleccionPersona').append('<option value="" data-icon="images/person.png" class="left circle">example 4</option>');
+              $('select').material_select();
+          });
   
   $( "#agregarproyecto" ).on( "click", function() {
     event.preventDefault();
