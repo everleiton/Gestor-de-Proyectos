@@ -62,7 +62,7 @@ $(document).ready(function() {
   VerIdEditable();
   eliminarElemento();
   editarElemento();
-  
+   $('input#input_text, textarea#textarea1').characterCounter();
   $('.tooltipped').tooltip({delay: 50});
   
   $('.modal').modal();
