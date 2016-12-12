@@ -18,6 +18,7 @@
   
   function drop(ev) {
     ev.preventDefault();
+    alert(ev.target.id);
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
   }
@@ -64,8 +65,8 @@
               </div>
               <div ondrop="drop(event)" ondragover="allowDrop(event)"class="areaTareas">
                 <div draggable="true" id="tarea1"ondragstart="drag(event)" data-position="top" data-delay="80" data-tooltip="Diseñar interfaz gráfica del proyecto" class="cuadritoTarea tooltipped">Diseñar interfaz gráfica del proyecto</div>
-                <div draggable="true" id="tarea1"ondragstart="drag(event)"  class="cuadritoTarea">Diseñar lógica</div>
-                <div draggable="true" id="tarea2" ondragstart="drag(event)" class="cuadritoTarea">Presentarlo</div>
+                <div draggable="true" id="tarea2"ondragstart="drag(event)"  class="cuadritoTarea">Diseñar lógica</div>
+                <div draggable="true" id="tarea3" ondragstart="drag(event)" class="cuadritoTarea">Presentarlo</div>
                 
               </div>
             </div>
@@ -74,7 +75,7 @@
                 <h6>En proceso 
                 </h6>
               </div>
-              <div ondrop="drop(event)" ondragover="allowDrop(event)" class="areaTareas">
+              <div id="ever1" ondrop="drop(event)" ondragover="allowDrop(event)" class="areaTareas">
                 
                 
               </div>
@@ -83,7 +84,7 @@
               <div draggable="false" class="tituloEstado">
                 <h6>Finalizada</h6>
               </div>
-              <div ondrop="drop(event)" ondragover="allowDrop(event)" class="areaTareas">
+              <div id="ever2" ondrop="drop(event)" ondragover="allowDrop(event)" class="areaTareas">
                 
               </div>
             </div>
