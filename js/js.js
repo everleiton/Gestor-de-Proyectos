@@ -79,7 +79,6 @@ $(document).ready(function() {
     $(this).unbind();
   });
   $("#addCombo").on('click', function(){
-    alert("Hola");
     var nomP = document.getElementById("nuevaPersona").value;
     if (nomP.length >1) {
       contPersonas+=1;
