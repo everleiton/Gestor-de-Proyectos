@@ -62,7 +62,8 @@ $(document).ready(function() {
   VerIdEditable();
   eliminarElemento();
   editarElemento();
-   $('input#input_text, textarea#textarea1').characterCounter();
+   AgregarTarea();
+  
   $('.tooltipped').tooltip({delay: 50});
   
   $('.modal').modal();
@@ -79,18 +80,18 @@ $(document).ready(function() {
   });
   $("#addCombo").on('click', function(){
     var nomP = document.getElementById("nuevaPersona").value;
-    if (nomP.value != null) {
+    if (nomP.length >1) {
       contPersonas+=1;
       personas.push({id: contPersonas, nombre: nomP, cantidadTareas: 1});
       Persister.saveObj('personas', personas);
       $('#seleccionPersona').append('<option value="" data-icon="images/person.png" class="left circle">'+nomP+'</option>');
       document.getElementById("nuevaPersona").value = "";
       $('select').material_select();
+      Materialize.toast('Persona añadida exitosamente <br> Seleccionela en la lista.', 10000);
     }else{
       Materialize.toast('Debe ingresar un nombre para poder agregar.', 10000);
     }
   });
-  
   $( "#agregarproyecto" ).on( "click", function() {
     event.preventDefault();
     
@@ -131,7 +132,14 @@ $(document).ready(function() {
   
   
 });
-
+function AgregarTarea() {
+  
+  $( "#btnAddTarea" ).on( "click", function(e) {
+      var tarea= document.getElementById("nameTarea").value;
+    $('#nueva').append('<div draggable="true" id="tarea1" ondragstart="drag(event)" data-position="top" data-delay="80" data-tooltip="'+tarea+'" class="cuadritoTarea">'+tarea+'</div>');
+    $('.tooltipped').tooltip({delay: 50});
+  }); 
+}
 
 function dibujarProyectos(nombre, fecha, id,personasencargadas, idBoton) {
   proyectonuevo='	  <div class="card objMovible" >	'+
@@ -164,14 +172,11 @@ function eliminarElemento() {
   $('#listaProyectos').html('');
   $( ".deleteCard" ).on( "click", function(e) {
     var idDelete =  e.target.id;
-    
-    
-    
-    listaProyectos.splice(idDelete);
+    listaProyectos.splice(idDelete,1);
     var nuevoArreglo =(JSON.stringify(listaProyectos));
     localStorage.setItem('listaProyectos', nuevoArreglo);
     
-    
+    load_data();
     
     
     $(this).parent().parent().parent().slideUp();

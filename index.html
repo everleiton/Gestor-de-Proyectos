@@ -18,7 +18,6 @@
   
   function drop(ev) {
     ev.preventDefault();
-    alert(ev.target.id);
     var data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
   }
@@ -47,7 +46,7 @@
       
       <div class="card" >
         <div class="card-content">
-          <div class="texto"><p id="proyecto_234"class="proyecto_234">PRoyecto de WEB II</p></div>
+          <div class="texto"><p id="proyecto_234"class="proyecto_234">Proyecto Web I</p></div>
           <div class="iconos">
             <a id="proyecto_234" href="#modal_editar"class="btn-floating tooltipped proyecto_234" data-position="top" data-delay="50" data-tooltip="Editar"><i class="material-icons blue lighten+1">edit</i></a>
             <a class="btn-floating tooltipped deleteCard" data-position="right" data-delay="50" data-tooltip="Eliminar"><i class="material-icons blue lighten+1">delete</i></a>
@@ -57,37 +56,38 @@
           <h6>ID: <strong>jhnhh</strong><span class="new badge blue lighten+1" data-badge-caption="Personas a cargo">1 </span></h6>
           <h6>Fecha de Inicio: </h6>
         </div>
+        
+        
+        
         <div class="card-action tareas2"> 
           <div class="columnaTarea">
-            <div draggable="false" class="tituloEstado">
-              <h6>Nueva tarea 
-                <a href="#modal_tarea"class="btn-floating btn-tiny tooltipped" data-position="top" data-delay="80" data-tooltip="Agregar Tarea"><i class="material-icons tiny blue lighten+1">add</i></a>
-              </div>
-              <div ondrop="drop(event)" ondragover="allowDrop(event)"class="areaTareas">
-                <div draggable="true" id="tarea1"ondragstart="drag(event)" data-position="top" data-delay="80" data-tooltip="Diseñar interfaz gráfica del proyecto" class="cuadritoTarea tooltipped">Diseñar interfaz gráfica del proyecto</div>
-                <div draggable="true" id="tarea2"ondragstart="drag(event)"  class="cuadritoTarea">Diseñar lógica</div>
-                <div draggable="true" id="tarea3" ondragstart="drag(event)" class="cuadritoTarea">Presentarlo</div>
-                
-              </div>
-            </div>
-            <div  class="columnaTarea">
+                <div draggable="false" class="tituloEstado">
+                        <h6>Nueva tarea 
+                          <a href="#modal_tarea"class="btn-floating btn-tiny tooltipped" data-position="top" data-delay="80" data-tooltip="Agregar Tarea"><i class="material-icons tiny blue lighten+1">add</i></a></h6>
+                  </div>
+                  <div id="nueva" ondrop="drop(event)" ondragover="allowDrop(event)"class="areaTareas">
+                        <div draggable="true" id="tarea1"ondragstart="drag(event)" data-position="top" data-delay="80" data-tooltip="jkdnjknkjncjkdsnkjcnskj jndsckjnkjcnsdjknc sjdncjknsdc jcnjksn sjdnckjsj" class="cuadritoTarea">Diseñar interfaz</div>
+                        <div draggable="true" id="tarea1"ondragstart="drag(event)"  class="cuadritoTarea">Diseñar lógica</div>
+                        <div draggable="true" id="tarea2" ondragstart="drag(event)" class="cuadritoTarea">Presentarlo</div>
+                  </div>
+          </div>
+          <div class="columnaTarea">
               <div draggable="false" class="tituloEstado">
-                <h6>En proceso 
-                </h6>
+                  <h6>En proceso </h6>
               </div>
-              <div id="ever1" ondrop="drop(event)" ondragover="allowDrop(event)" class="areaTareas">
-                
-                
-              </div>
+                  <div id="enProceso" ondrop="drop(event)" ondragover="allowDrop(event)" class="areaTareas">
+                    
+                    
+                  </div>
             </div>
-            <div  class="columnaTarea">
+          <div class="columnaTarea">
               <div draggable="false" class="tituloEstado">
                 <h6>Finalizada</h6>
               </div>
-              <div id="ever2" ondrop="drop(event)" ondragover="allowDrop(event)" class="areaTareas">
-                
-              </div>
-            </div>
+                  <div id="finalizado" ondrop="drop(event)" ondragover="allowDrop(event)" class="areaTareas">
+                    
+                  </div>
+          </div>
             
             
             
@@ -158,26 +158,26 @@
         <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix">work</i>
-            <input value="" id="name" type="text" class="active validate" maxlength="40" length="40"required>
+            <input value="" id="nameTarea" type="text" length="40"  mmaxlength="40" class="active validate" required>
             <label for="name">Tarea</label>
           </div></div> 
           <div class="row">
             <div class="input-field col s5">
               <select  id="seleccionPersona"class="icons">
-                
+          <option value=""></option>
               </select>
               <label>Selecciona una persona</label>    
-            </div> <a id="addCombo"class="btn-floating btn-tiny tooltipped" data-position="top" data-delay="80" data-tooltip="Añadir persona a lista"><i class="material-icons tiny blue lighten+1">add</i></a>
-            <div class="input-field col s4">
-              <input value="" id="nuevaPersona" type="text" class="active validate" required>
-              <label for="nuevaPersona">Añadir una persona</label>
-            </div>
+        </div> <a id="addCombo"class="btn-floating btn-tiny tooltipped" data-position="top" data-delay="80" data-tooltip="Añadir persona"><i class="material-icons tiny blue lighten+1">add</i></a>
+        <div class="input-field col s4">
+          <input value="" id="nuevaPersona" type="text" class="active validate" length="15"  mmaxlength="15"required>
+          <label for="nuevaPersona">Añadir una persona</label>
+        </div>
           </div>    
         </form>       
       </div>
       <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
-        <a id="btnAddTarea" class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nueva Tarea  !!', 4000)">Agregar tarea</a>
+        <a id="btnAddTarea"  class="modal-action modal-close waves-effect waves-green btn-flat " onclick="Materialize.toast('Nueva Tarea  !!', 4000)">Agregar tarea</a>
       </div>
     </div>
     
@@ -189,7 +189,7 @@
             <div class="input-field col s12">
               <i id="iconoEdicion"class="material-icons prefix">account_circle</i>
               <input id="nombreEdicion"value="" id="name" type="text" class="active validate" required>
-              
+        
             </div></div>     
           </form>       
         </div>
