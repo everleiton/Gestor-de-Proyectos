@@ -1,6 +1,36 @@
-$(document).ready(function () {
+var listaProyectos = [];
 
-       // Build the chart
+var dataTable=[];
+var Persister = {
+  
+  save: function (key, value) {
+    localStorage.setItem(key, value);
+  },
+  load: function(key, default_value) {
+    return localStorage.getItem(key) || default_value;
+  },
+  saveObj: function(key, value) {
+    var json_string = JSON.stringify(value);
+    this.save(key, json_string);
+  },
+  loadObj: function(key, default_value) {
+    var json_string = this.load(key, default_value);
+    return JSON.parse(json_string);
+  }
+};
+$(document).ready(function () {
+    function load_data() {
+    listaProyectos = Persister.loadObj('listaProyectos', "[]");
+    for (var i = 0; i < listaProyectos.length; i++) {
+      if (listaProyectos[i] != null) {
+        personas.push({name: listaProyectos[i].nombre, y: listaProyectos[i]});
+        
+      }
+    }
+    
+    contProyecto=  listaProyectos.length;
+    
+  }
        Highcharts.chart('containerproyecto', {
            chart: {
                plotBackgroundColor: null,
@@ -27,32 +57,7 @@ $(document).ready(function () {
            series: [{
                name: 'Brands',
                colorByPoint: true,
-               data: [{
-                   name: 'Microsoft Internet Explorer',
-                   y: 56.33
-               }, {
-                   name: 'Chrome',
-                   y: 24.03,
-                   sliced: true,
-                   selected: true
-               }, {   name: 'Chrome',
-                  y: 24.03,
-                  sliced: true,
-                  selected: true
-              }, {
-                 
-                   name: 'Firefox',
-                   y: 10.38
-               }, {
-                   name: 'Safari',
-                   y: 4.77
-               }, {
-                   name: 'Opera',
-                   y: 0.91
-               }, {
-                   name: 'Proprietary or Undetectable',
-                   y: 0.2
-               }]
+               dataTable:[]
            }]
        });
    });
