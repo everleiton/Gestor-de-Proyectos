@@ -48,7 +48,7 @@ function load_data() {
 function loadPersonas() {
   for (var i = 0; i < personas.length; i++) {
     
-    $('#seleccionPersona').append('<option value="" data-icon="images/person.png" class="left circle">'+personas[i].nombre+'</option>');
+    $('#seleccionPersona').append('<option value="'+personas[i].nombre+'" data-icon="images/person.png" class="left circle">'+personas[i].nombre+'</option>');
     $('select').material_select();
     
   }
@@ -57,14 +57,16 @@ function loadPersonas() {
 }
 
 $(document).ready(function() {
+  $('.tooltipped').tooltip({delay: 50});
   load_data();
   loadPersonas();
   VerIdEditable();
   eliminarElemento();
   editarElemento();
-   AgregarTarea();
+  AgregarTarea();
+  VerIdCant();
   
-  $('.tooltipped').tooltip({delay: 50});
+  
   
   $('.modal').modal();
   $('select').material_select();
@@ -78,41 +80,32 @@ $(document).ready(function() {
   $("#undo").on('click', function(){
     $(this).unbind();
   });
+  
   $("#addCombo").on('click', function(){
     var nomP = document.getElementById("nuevaPersona").value;
     if (nomP.length >1) {
       contPersonas+=1;
       personas.push({id: contPersonas, nombre: nomP, cantidadTareas: 1});
       Persister.saveObj('personas', personas);
-      $('#seleccionPersona').append('<option value="" data-icon="images/person.png" class="left circle">'+nomP+'</option>');
+      $('#seleccionPersona').append('<option value="'+nomP+'" data-icon="images/person.png" class="left circle">'+nomP+'</option>');
       document.getElementById("nuevaPersona").value = "";
       $('select').material_select();
+      document.getElementById("nuevaPersona").value ="";
       Materialize.toast('Persona añadida exitosamente <br> Seleccionela en la lista.', 10000);
     }else{
       Materialize.toast('Debe ingresar un nombre para poder agregar.', 10000);
     }
   });
+  
+  
   $( "#agregarproyecto" ).on( "click", function() {
     event.preventDefault();
-    
-    
-    /*
-    Guardar los datos como objetos para que cuando cargue sea un mismo var que se le van asiganando los proyectos
-    lo que voy a guardar son variables  lo que me permitirá modificar por obj.nom o lo que sea
-    cuando los agarro recorro 2 for uno con la lsta de priyecto y otro que me reforre el listado de atributps de la tarea   podria ser tarea[ ]
-    
-    */
-    
     var nomNuevoPro= document.getElementById("nameProyecto").value;
     var fechaInicio= document.getElementById("dateInicio").value;
     ID = contProyecto +1;
     idBoton= contProyecto; //Revisar este
-    
-    
     if ((nomNuevoPro != "") && fechaInicio !="") {
-      
       dibujarProyectos(nomNuevoPro, fechaInicio, ID, 0, idBoton);
-      
       $('#nombreEdicion').val("");
       $('#nameProyecto').val("");
       $('#dateInicio').val("");
@@ -122,25 +115,33 @@ $(document).ready(function() {
       Materialize.toast('Ops!! Ha ocurrido un error <br><br> Debe asignarle un nombre y/o fecha <br> al proyecto para poderlo agregar.', 10000);
       $("#nameProyecto").attr("placeholder", "");
     }
-    
-    
-    
-    
   });
-  
-  
-  
-  
 });
-function AgregarTarea() {
-  
+
+/*
+//////////////Método para dibujar las tareas//////////////
+*/
+function AgregarTarea() {  
   $( "#btnAddTarea" ).on( "click", function(e) {
-      var tarea= document.getElementById("nameTarea").value;
-    $('#nueva').append('<div draggable="true" id="tarea1" ondragstart="drag(event)" data-position="top" data-delay="80" data-tooltip="'+tarea+'" class="cuadritoTarea">'+tarea+'</div>');
+    var tarea= document.getElementById("nameTarea").value;
+    var combo = document.getElementById('seleccionPersona');
+    if(combo.selectedIndex<0){
+      
+      alert('No hay opción seleccionada');
+    }
+    else{
+      var seleccion =combo.options[combo.selectedIndex].value;
+    }
+    $('#nueva').append('<div draggable="true" id="tarea1" ondragstart="drag(event)" data-position="top" data-delay="80" data-tooltip="'+tarea+ '  | Encargado de la tarea: '+seleccion+'" class="cuadritoTarea tooltipped">'+tarea+'</div>');
     $('.tooltipped').tooltip({delay: 50});
+    
+    
   }); 
 }
 
+/*
+//////////////Método para Dibujar los proycetos en pantalla//////////////
+*/
 function dibujarProyectos(nombre, fecha, id,personasencargadas, idBoton) {
   proyectonuevo='	  <div class="card objMovible" >	'+
   '<div class="card-content">	'+
@@ -154,12 +155,16 @@ function dibujarProyectos(nombre, fecha, id,personasencargadas, idBoton) {
   '<h6>ID: <strong>'+ID+'</strong><span class="new badge blue lighten+1" data-badge-caption="Personas a cargo">'+personasencargadas+'</span></h6>	'+
   ' <h6>Fecha de Inicio: '+fecha+'</h6>	'+
   '</div>	'+
-  '<div class="card-action"> Nuevo | En Proceso |Finali</div>	'+
+  '<div class="card-action tareas2"><div class="columnaTarea"><div draggable="false" class="tituloEstado"><h6>Nueva tarea '+
+      '<a  id="tarea'+id+'"href="#modal_tarea" id="btnNueva" class="btn-floating btn-tiny tooltipped" data-position="top" data-delay="80" data-tooltip="Agregar Tarea"><i id="'+id+'"class="material-icons tiny blue lighten+1">add</i></a></h6></div><div id="nueva" ondrop="drop(event)" ondragover="allowDrop(event)"class="areaTareas"></div></div>'+
+        '<div class="columnaTarea"> <div draggable="false" class="tituloEstado"> <h6>En proceso </h6></div>'+
+        '<div id="enProceso" ondrop="drop(event)" ondragover="allowDrop(event)" class="areaTareas"></div></div>'+
+        '<div class="columnaTarea"><div draggable="false" class="tituloEstado"><h6>Finalizada</h6></div>'+
+        '<div id="finalizado" ondrop="drop(event)" ondragover="allowDrop(event)" class="areaTareas"></div></div></div>	'+
   '</div>	';
   listaProyectos.push({id: id,nombre: nombre, fecha: fecha, encargados: personasencargadas, idBoton: idBoton});
   Persister.saveObj('listaProyectos', listaProyectos);
   $('.tareas').append(proyectonuevo);
-  
   $('.tooltipped').tooltip({delay: 50});
   editarElemento();
   eliminarElemento();
@@ -175,10 +180,7 @@ function eliminarElemento() {
     listaProyectos.splice(idDelete,1);
     var nuevoArreglo =(JSON.stringify(listaProyectos));
     localStorage.setItem('listaProyectos', nuevoArreglo);
-    
     load_data();
-    
-    
     $(this).parent().parent().parent().slideUp();
   });  
 }
@@ -194,20 +196,15 @@ function editarElemento() {
   
   $( "#salvarEdicion" ).on( "click", function() {
     alert(listaProyectos[edicionProyecto].nombre);
-    debugger;
-    
     var nombreNuevo= document.getElementById("nombreEdicion").value;
-    
     document.getElementById(idSeleccionadoEdicion).innerHTML = nombreNuevo;
     listaProyectos[edicionProyecto].nombre = nombreNuevo;
     var nuevoArreglo =(JSON.stringify(listaProyectos));
     localStorage.setItem('listaProyectos', nuevoArreglo);
-    
   });  
 };
 
 function VerIdEditable() {
-  
   $( ".btnEditar" ).on( "click", function(e) {
     idSeleccionadoEdicion=  e.target.id;
     idTargeta = idSeleccionadoEdicion.substr(-10,1);
@@ -218,6 +215,12 @@ function VerIdEditable() {
   });  
 }
 
+function VerIdCant() {
+  $( ".btnNueva" ).on( "click", function(e) {
+    idEditador=  e.target.id;
+    alert(idEditador);
+  });  
+}
 
 /*
 function findAndRemove(array, property, value) {
@@ -237,19 +240,6 @@ findAndRemove(countries.results, 'id', 'AF');
 
 
 */
-///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
-/////////////////////////////OIR AUDIO//
-///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
-
 function dibujarCargados( id,nombre, fecha,personasencargadas, idBoton) {
   var proyecto='	  <div class="card objMovible" >	'+
   '<div class="card-content">	'+
@@ -263,13 +253,17 @@ function dibujarCargados( id,nombre, fecha,personasencargadas, idBoton) {
   '<h6>ID: <strong>'+id+'</strong><span class="new badge blue lighten+1" data-badge-caption="Personas a cargo">'+personasencargadas+'</span></h6>	'+
   ' <h6>Fecha de Inicio: '+fecha+'</h6>	'+
   '</div>	'+
-  '<div class="card-action"> Nuevo | En Proceso |Finali</div>	'+
+  '<div class="card-action tareas2"><div class="columnaTarea"><div draggable="false" class="tituloEstado"><h6>Nueva tarea '+
+      '<a id="tarea'+id+'" href="#modal_tarea" id="btnNueva" class="btn-floating btn-tiny tooltipped" data-position="top" data-delay="80" data-tooltip="Agregar Tarea"><i id="'+id+'"class="material-icons tiny blue lighten+1">add</i></a></h6></div><div id="nueva_1" ondrop="drop(event)" ondragover="allowDrop(event)"class="areaTareas"></div></div>'+
+        '<div class="columnaTarea"> <div draggable="false" class="tituloEstado"> <h6>En proceso </h6></div>'+
+        '<div id="enProceso" ondrop="drop(event)" ondragover="allowDrop(event)" class="areaTareas"></div></div>'+
+        '<div class="columnaTarea"><div draggable="false" class="tituloEstado"><h6>Finalizada</h6></div>'+
+        '<div id="finalizado" ondrop="drop(event)" ondragover="allowDrop(event)" class="areaTareas"></div></div></div>	'+
   '</div>	';
-  
   $('.tareas').append(proyecto);
-  
   $('.tooltipped').tooltip({delay: 50});
   editarElemento();
   eliminarElemento();
   VerIdEditable();
+  AgregarTarea();
 }

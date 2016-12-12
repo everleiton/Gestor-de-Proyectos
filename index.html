@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./css/style.css" media="screen" title="no title">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <link rel="shortcut icon" href="../img/icono.png" type="image/x-icon">
+<!--  <link rel="shortcut icon" href="../img/icono.png" type="image/x-icon">-->
   <script>
   function allowDrop(ev) {
     ev.preventDefault();
@@ -65,12 +65,12 @@
           <div class="columnaTarea">
                 <div draggable="false" class="tituloEstado">
                         <h6>Nueva tarea 
-                          <a href="#modal_tarea"class="btn-floating btn-tiny tooltipped" data-position="top" data-delay="80" data-tooltip="Agregar Tarea"><i class="material-icons tiny blue lighten+1">add</i></a></h6>
+                          <a href="#modal_tarea"class="btn-floating btn-tiny tooltipped" data-position="top" data-delay="80" data-tooltip="Agregar Tarea"><i class="material-icons tiny blue lighten+1">add</i></a>
+                        </h6>
                   </div>
-                  <div id="nueva" ondrop="drop(event)" ondragover="allowDrop(event)"class="areaTareas">
-                        <div draggable="true" id="tarea1"ondragstart="drag(event)" data-position="top" data-delay="80" data-tooltip="jkdnjknkjncjkdsnkjcnskj jndsckjnkjcnsdjknc sjdncjknsdc jcnjksn sjdnckjsj" class="cuadritoTarea">Diseñar interfaz</div>
-                        <div draggable="true" id="tarea1"ondragstart="drag(event)"  class="cuadritoTarea">Diseñar lógica</div>
-                        <div draggable="true" id="tarea2" ondragstart="drag(event)" class="cuadritoTarea">Ever</div>
+                  <div id="nueva_1" ondrop="drop(event)" ondragover="allowDrop(event)"class="areaTareas">
+                        <div draggable="true" id="tarea3"ondragstart="drag(event)" data-position="top" data-delay="80" data-tooltip="jkdnjkn" class="cuadritoTarea tooltipped">Diseñar interfaz</div>
+                      
                   </div>
           </div>
           <div class="columnaTarea">
@@ -166,7 +166,7 @@
           <div class="row">
             <div class="input-field col s5">
               <select  id="seleccionPersona"class="icons">
-          <option value="Seleccione"></option>
+                  <option value="Hola"></option>
               </select>
               <label>Selecciona una persona</label>    
         </div> <a id="addCombo"class="btn-floating btn-tiny tooltipped" data-position="top" data-delay="80" data-tooltip="Añadir persona"><i class="material-icons tiny blue lighten+1">add</i></a>
